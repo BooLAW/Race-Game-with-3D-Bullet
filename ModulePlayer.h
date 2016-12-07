@@ -5,6 +5,7 @@
 
 struct PhysVehicle3D;
 
+#define NITRO_ACCELERATION 10000.0f
 #define MAX_ACCELERATION 1000.0f
 #define TURN_DEGREES 15.0f * DEGTORAD
 #define BRAKE_POWER 1000.0f
@@ -25,4 +26,5 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
+	uint nitro;
 };

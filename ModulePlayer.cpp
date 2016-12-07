@@ -8,6 +8,7 @@
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
 	turn = acceleration = brake = 0.0f;
+	nitro = 50;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -30,6 +31,7 @@ bool ModulePlayer::Start()
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 50.5;
 	car.maxSuspensionForce = 6000.0f;
+	
 
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
@@ -55,6 +57,7 @@ bool ModulePlayer::Start()
 	car.wheels[0].suspensionRestLength = suspensionRestLength;
 	car.wheels[0].radius = wheel_radius;
 	car.wheels[0].width = wheel_width;
+	car.wheels[0].width += 2;
 	car.wheels[0].front = true;
 	car.wheels[0].drive = true;
 	car.wheels[0].brake = false;
@@ -78,14 +81,14 @@ bool ModulePlayer::Start()
 	car.wheels[2].axis = axis;
 	car.wheels[2].suspensionRestLength = suspensionRestLength;
 	car.wheels[2].radius = wheel_radius;
-	car.wheels[2].width = wheel_width;
+	car.wheels[2].width = wheel_width-3;
 	car.wheels[2].front = false;
 	car.wheels[2].drive = true;
 	car.wheels[2].brake = true;
 	car.wheels[2].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 3, 3);
+	vehicle->SetPos(0, 0, 0);
 	
 	return true;
 }
@@ -103,9 +106,22 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
-	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION;
+		
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+		{
+			if (nitro > 5) 
+			{
+				acceleration = NITRO_ACCELERATION;
+				nitro -= 5;
+			}
+			//we need to max the nitro
+		}
+		else
+		{
+			acceleration = MAX_ACCELERATION;
+		}
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
@@ -124,6 +140,9 @@ update_status ModulePlayer::Update(float dt)
 	{
 		brake = BRAKE_POWER;
 	}
+	
+	if (nitro < 50);
+		nitro += 1;
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);

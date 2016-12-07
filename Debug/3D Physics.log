@@ -1,3 +1,4 @@
 ﻿  ModulePlayer.cpp
-  3D Physics.vcxproj -> C:\Users\paubv1\Desktop\Physics3D_class5 - solution\Debug\3D Physics - class5.exe
-  3D Physics.vcxproj -> C:\Users\paubv1\Desktop\Physics3D_class5 - solution\Debug\3D Physics - class5.pdb (Full PDB)
+c:\users\paubv1\documents\github\race-game-with-3d-bullet\moduleplayer.cpp(144): warning C4390: ';': empty controlled statement found; is this the intent?
+  3D Physics.vcxproj -> C:\Users\paubv1\Documents\GitHub\Race-Game-with-3D-Bullet\Debug\3D Physics - class5.exe
+  3D Physics.vcxproj -> C:\Users\paubv1\Documents\GitHub\Race-Game-with-3D-Bullet\Debug\3D Physics - class5.pdb (Full PDB)
