@@ -24,11 +24,11 @@ bool ModulePlayer::Start()
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(2, 1, 4);
 	car.chassis_offset.Set(0, 1.5, 0);
-	car.mass = 1000.0f;
+	car.mass = 1500.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.1f;
-	car.maxSuspensionTravelCm = 1000.0f;
+	car.maxSuspensionTravelCm = 500.0f;
 	car.frictionSlip = 50.5;
 	car.maxSuspensionForce = 6000.0f;
 	
@@ -50,41 +50,40 @@ bool ModulePlayer::Start()
 	car.num_wheels = 3;
 	car.wheels = new Wheel[3];
 
-	// FRONT ------------------------
-	car.wheels[0].connection.Set(half_width /20, connection_height, half_length/*half_length - wheel_radius*/);
+	// REAR ------------------------
+	car.wheels[0].connection.Set(half_width /20, connection_height, -half_length + wheel_radius/*half_length - wheel_radius*/);
 	car.wheels[0].direction = direction;
 	car.wheels[0].axis = axis;
 	car.wheels[0].suspensionRestLength = suspensionRestLength;
 	car.wheels[0].radius = wheel_radius;
-	car.wheels[0].width = wheel_width;
-	car.wheels[0].width += 2;
-	car.wheels[0].front = true;
+	car.wheels[0].width = wheel_width + 1;
+	car.wheels[0].front = false;
 	car.wheels[0].drive = true;
-	car.wheels[0].brake = false;
+	car.wheels[0].brake = true;
 	car.wheels[0].steering = true;
 
-	// REAR-LEFT ------------------------
-	car.wheels[1].connection.Set(half_width - 0.3f * wheel_width, connection_height, -half_length + wheel_radius);
+	// FRONT-LEFT ------------------------
+	car.wheels[1].connection.Set(half_width - 0.3f * wheel_width, connection_height, half_length);
 	car.wheels[1].direction = direction;
 	car.wheels[1].axis = axis;
 	car.wheels[1].suspensionRestLength = suspensionRestLength;
 	car.wheels[1].radius = wheel_radius;
 	car.wheels[1].width = wheel_width;
-	car.wheels[1].front = false;
-	car.wheels[1].drive = true;
-	car.wheels[1].brake = true;
+	car.wheels[1].front = true;
+	car.wheels[1].drive = false;
+	car.wheels[1].brake = false;
 	car.wheels[1].steering = false;
 
-	// REAR-RIGHT ------------------------
-	car.wheels[2].connection.Set(-half_width + 0.3f * wheel_width, connection_height, -half_length + wheel_radius);
+	// FRONT-RIGHT ------------------------
+	car.wheels[2].connection.Set(-half_width + 0.3f * wheel_width, connection_height, half_length);
 	car.wheels[2].direction = direction;
 	car.wheels[2].axis = axis;
 	car.wheels[2].suspensionRestLength = suspensionRestLength;
 	car.wheels[2].radius = wheel_radius;
-	car.wheels[2].width = wheel_width-3;
-	car.wheels[2].front = false;
-	car.wheels[2].drive = true;
-	car.wheels[2].brake = true;
+	car.wheels[2].width = wheel_width;
+	car.wheels[2].front = true;
+	car.wheels[2].drive = false;
+	car.wheels[2].brake = false;
 	car.wheels[2].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
@@ -116,7 +115,6 @@ update_status ModulePlayer::Update(float dt)
 				acceleration = NITRO_ACCELERATION;
 				nitro -= 5;
 			}
-			//we need to max the nitro
 		}
 		else
 		{
