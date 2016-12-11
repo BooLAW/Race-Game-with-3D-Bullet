@@ -12,7 +12,7 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 	Y = vec3(0.0f, 1.0f, 0.0f);
 	Z = vec3(0.0f, 0.0f, 1.0f);
 
-	Position = vec3(5.0f, 20.0f, -20.0f);
+	Position = vec3(5.0f, 20.0f, -220.0f);
 	Reference = vec3(0.0f, 0.0f, 0.0f);
 }
 
@@ -43,6 +43,7 @@ update_status ModuleCamera3D::Update(float dt)
 	// Now we can make this movememnt frame rate independant!
 
 	vec3 newPos(0,0,0);
+
 	//----MANUAL CAMERA MOVEMENT-----------
 	float speed = 3.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
@@ -71,7 +72,6 @@ update_status ModuleCamera3D::Update(float dt)
 	{
 		newPos += X*(speed * 3);
 	}
-	
 
 
 	Position += newPos;

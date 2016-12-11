@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleSceneIntro.h"
+#include "ModulePhysics3D.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
 
@@ -19,6 +20,7 @@ bool ModuleSceneIntro::Start()
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
+	CreateLinearCircuit(vec3(10, 0, 0));
 
 	return ret;
 }
@@ -43,5 +45,20 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
+
 }
+
+void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
+{
+	Cube left_limit(3,4,300);
+	left_limit.SetPos(-10, 0, 0);
+
+	Cube right_limit(3,4,300);
+	right_limit.SetPos(10, 0, 0);
+
+
+	App->physics->AddBody(left_limit, 1000000);
+	App->physics->AddBody(right_limit, 1000000);
+}
+
 

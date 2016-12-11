@@ -46,4 +46,3 @@ void PhysBody3D::SetPos(float x, float y, float z)
 	body->setWorldTransform(t);
 }
 
-//Do vehicle modifying functions here
