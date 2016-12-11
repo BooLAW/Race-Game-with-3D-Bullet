@@ -10,7 +10,8 @@ enum PrimitiveTypes
 	Primitive_Plane,
 	Primitive_Cube,
 	Primitive_Sphere,
-	Primitive_Cylinder
+	Primitive_Cylinder,
+	Primitive_Ramp
 };
 
 class Primitive
@@ -46,7 +47,15 @@ public :
 public:
 	vec3 size;
 };
-
+class Ramp : public Primitive
+{
+public:
+	Ramp();
+	Ramp(float sizeX, float sizeY, float sizeZ);
+	void InnerRender() const;
+public:
+	vec3 size;
+};
 // ============================================
 class Sphere : public Primitive
 {

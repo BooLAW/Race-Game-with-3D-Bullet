@@ -60,7 +60,7 @@ bool ModulePlayer::Start()
 	car.wheels[0].front = false;
 	car.wheels[0].drive = true;
 	car.wheels[0].brake = true;
-	car.wheels[0].steering = true;
+	car.wheels[0].steering = false;
 
 	// FRONT-LEFT ------------------------
 	car.wheels[1].connection.Set(half_width - 0.3f * wheel_width, connection_height, half_length);
@@ -72,7 +72,7 @@ bool ModulePlayer::Start()
 	car.wheels[1].front = true;
 	car.wheels[1].drive = false;
 	car.wheels[1].brake = false;
-	car.wheels[1].steering = false;
+	car.wheels[1].steering = true;
 
 	// FRONT-RIGHT ------------------------
 	car.wheels[2].connection.Set(-half_width + 0.3f * wheel_width, connection_height, half_length);
@@ -84,7 +84,7 @@ bool ModulePlayer::Start()
 	car.wheels[2].front = true;
 	car.wheels[2].drive = false;
 	car.wheels[2].brake = false;
-	car.wheels[2].steering = false;
+	car.wheels[2].steering = true;
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(5, 0, -200);
@@ -125,13 +125,13 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 		if(turn < TURN_DEGREES)
-			turn -=  TURN_DEGREES;
+			turn +=  TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
 		if(turn > -TURN_DEGREES)
-			turn += TURN_DEGREES;
+			turn -= TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
@@ -151,6 +151,16 @@ update_status ModulePlayer::Update(float dt)
 	char title[80];
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
+
+	float transformation_matrix[16];
+	vehicle->GetTransform(transformation_matrix);
+	vec3 position(transformation_matrix[12], transformation_matrix[13], transformation_matrix[14]);
+	App->camera->LookAt(position);
+
+	position.x += 5;
+	position.y += 5;
+	position.z -= 15;
+	App->camera->Position = position;
 
 	return UPDATE_CONTINUE;
 }

@@ -156,6 +156,63 @@ void Cube::InnerRender() const
 
 	glEnd();
 }
+// RAMP ============================================
+Ramp::Ramp() : Primitive(), size(1.0f, 1.0f, 1.0f)
+{
+	type = PrimitiveTypes::Primitive_Ramp;
+}
+
+Ramp::Ramp(float sizeX, float sizeY, float sizeZ) : Primitive(), size(sizeX, sizeY, sizeZ)
+{
+	type = PrimitiveTypes::Primitive_Ramp;
+}
+
+void Ramp::InnerRender() const
+{
+	float sx = size.x * 0.5f;
+	float sy = size.y * 0.5f;
+	float sz = size.z * 0.5f;
+
+	glBegin(GL_QUAD_STRIP);
+
+	glNormal3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(-sx, -sy, sz);
+	glVertex3f(sx, -sy, sz);
+	glVertex3f(sx, sy, sz);
+	glVertex3f(-sx, sy, sz);
+
+	glNormal3f(0.0f, 0.0f, -1.0f);
+	glVertex3f(sx, -sy, -sz);
+	glVertex3f(-sx, -sy, -sz);
+	glVertex3f(-sx, sy, -sz);
+	glVertex3f(sx, sy, -sz);
+
+	glNormal3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(sx, -sy, sz);
+	glVertex3f(sx, -sy, -sz);
+	glVertex3f(sx, sy, -sz);
+	glVertex3f(sx, sy, sz);
+
+	glNormal3f(-1.0f, 0.0f, 0.0f);
+	glVertex3f(-sx, -sy, -sz);
+	glVertex3f(-sx, -sy, sz);
+	glVertex3f(-sx, sy, sz);
+	glVertex3f(-sx, sy, -sz);
+
+	glNormal3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(-sx, sy, sz);
+	glVertex3f(sx, sy, sz);
+	glVertex3f(sx, sy, -sz);
+	glVertex3f(-sx, sy, -sz);
+
+	glNormal3f(0.0f, -1.0f, 0.0f);
+	glVertex3f(-sx, -sy, -sz);
+	glVertex3f(sx, -sy, -sz);
+	glVertex3f(sx, -sy, sz);
+	glVertex3f(-sx, -sy, sz);
+
+	glEnd();
+}
 
 // SPHERE ============================================
 Sphere::Sphere() : Primitive(), radius(1.0f)
