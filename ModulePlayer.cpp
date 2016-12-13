@@ -28,7 +28,7 @@ bool ModulePlayer::Start()
 	car.suspensionStiffness = 10.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.1f;
-	car.maxSuspensionTravelCm = 500.0f;
+	car.maxSuspensionTravelCm = 50.0f;
 	car.frictionSlip = 50.5;
 	car.maxSuspensionForce = 6000.0f;
 	
@@ -51,7 +51,7 @@ bool ModulePlayer::Start()
 	car.wheels = new Wheel[3];
 
 	// REAR ------------------------
-	car.wheels[0].connection.Set(half_width/100, connection_height, -half_length + wheel_radius/*half_length - wheel_radius*/);
+	car.wheels[0].connection.Set(half_width/200, connection_height+0.5, -half_length + wheel_radius/*half_length - wheel_radius*/);
 	car.wheels[0].direction = direction;
 	car.wheels[0].axis = axis;
 	car.wheels[0].suspensionRestLength = suspensionRestLength;
@@ -87,7 +87,7 @@ bool ModulePlayer::Start()
 	car.wheels[2].steering = true;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(5, 0, -200);
+	vehicle->SetPos(initial_pos.x,initial_pos.y,initial_pos.z);
 	
 	return true;
 }
@@ -142,6 +142,13 @@ update_status ModulePlayer::Update(float dt)
 	
 	if (nitro < MAX_FRAMES_TURBO)
 		nitro += 1;
+
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT)
+	{
+		vehicle->SetPos(initial_pos.x,initial_pos.y,initial_pos.z);
+		//vehicle->SetTransform()
+		brake = BRAKE_POWER*10;
+	}
 
 	
 	vehicle->Turn(turn);

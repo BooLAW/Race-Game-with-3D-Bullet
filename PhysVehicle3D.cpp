@@ -23,19 +23,29 @@ PhysVehicle3D::~PhysVehicle3D()
 // ----------------------------------------------------------------------------
 void PhysVehicle3D::Render()
 {
-	Cylinder wheel;
+	Cylinder back_wheel;
+	back_wheel.radius = vehicle->getWheelInfo(1).m_wheelsRadius;
+	back_wheel.color = Red;
 
-	wheel.color = Blue;
+	Cube wheel_front(1, 0.2, 5);
+	wheel_front.color = Blue;
 
 	for(int i = 0; i < vehicle->getNumWheels(); ++i)
 	{
-		wheel.radius = info.wheels[0].radius;
-		wheel.height = info.wheels[0].width;
+		if (i == 0)
+		{
+			vehicle->updateWheelTransform(i);
+			vehicle->getWheelInfo(i).m_worldTransform.getOpenGLMatrix(&back_wheel.transform);
+			back_wheel.Render();
+		}
+		else
+		{
+			vehicle->updateWheelTransform(i);
+			vehicle->getWheelInfo(i).m_worldTransform.getOpenGLMatrix(&wheel_front.transform);
 
-		vehicle->updateWheelTransform(i);
-		vehicle->getWheelInfo(i).m_worldTransform.getOpenGLMatrix(&wheel.transform);
-
-		wheel.Render();
+			wheel_front.Render();
+		}
+		
 	}
 
 	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
@@ -67,15 +77,14 @@ void PhysVehicle3D::ApplyEngineForce(float force)
 // ----------------------------------------------------------------------------
 void PhysVehicle3D::Brake(float force)
 {
-	for(int i = 0; i < vehicle->getNumWheels(); ++i)
+	for (int i = 0; i < vehicle->getNumWheels(); ++i)
 	{
-		if(info.wheels[i].brake == true)
+		if (info.wheels[i].brake == true)
 		{
 			vehicle->setBrake(force, i);
 		}
 	}
 }
-
 // ----------------------------------------------------------------------------
 void PhysVehicle3D::Turn(float degrees)
 {
