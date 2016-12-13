@@ -25,7 +25,7 @@ bool ModulePlayer::Start()
 	car.chassis_size.Set(2, 1, 4);
 	car.chassis_offset.Set(0, 1.5, 0);
 	car.mass = 1500.0f;
-	car.suspensionStiffness = 15.88f;
+	car.suspensionStiffness = 10.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.1f;
 	car.maxSuspensionTravelCm = 500.0f;
@@ -51,7 +51,7 @@ bool ModulePlayer::Start()
 	car.wheels = new Wheel[3];
 
 	// REAR ------------------------
-	car.wheels[0].connection.Set(half_width /20, connection_height, -half_length + wheel_radius/*half_length - wheel_radius*/);
+	car.wheels[0].connection.Set(half_width/100, connection_height, -half_length + wheel_radius/*half_length - wheel_radius*/);
 	car.wheels[0].direction = direction;
 	car.wheels[0].axis = axis;
 	car.wheels[0].suspensionRestLength = suspensionRestLength;
@@ -71,7 +71,7 @@ bool ModulePlayer::Start()
 	car.wheels[1].width = wheel_width;
 	car.wheels[1].front = true;
 	car.wheels[1].drive = false;
-	car.wheels[1].brake = false;
+	car.wheels[1].brake = true;
 	car.wheels[1].steering = true;
 
 	// FRONT-RIGHT ------------------------
@@ -83,7 +83,7 @@ bool ModulePlayer::Start()
 	car.wheels[2].width = wheel_width;
 	car.wheels[2].front = true;
 	car.wheels[2].drive = false;
-	car.wheels[2].brake = false;
+	car.wheels[2].brake = true;
 	car.wheels[2].steering = true;
 
 	vehicle = App->physics->AddVehicle(car);
@@ -110,10 +110,10 @@ update_status ModulePlayer::Update(float dt)
 		
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
-			if (nitro > 5) 
+			if (nitro > 2) 
 			{
 				acceleration = NITRO_ACCELERATION;
-				nitro -= 5;
+				nitro -= 2;
 			}
 		}
 		else
@@ -137,14 +137,16 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		brake = BRAKE_POWER;
+		acceleration = -MAX_ACCELERATION;
 	}
 	
-	if (nitro < 50);
+	if (nitro < MAX_FRAMES_TURBO)
 		nitro += 1;
 
-	vehicle->ApplyEngineForce(acceleration);
+	
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
+	vehicle->ApplyEngineForce(acceleration);
 
 	vehicle->Render();
 
