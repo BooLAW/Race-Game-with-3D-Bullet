@@ -53,7 +53,7 @@ bool ModulePlayer::Start()
 	// REAR ------------------------
 	car.wheels[0].connection.Set(half_width/200, connection_height+0.5, -half_length + wheel_radius/*half_length - wheel_radius*/);
 	car.wheels[0].direction = direction;
-	car.wheels[0].axis = axis;
+	car.wheels[0].axis = axis;	
 	car.wheels[0].suspensionRestLength = suspensionRestLength;
 	car.wheels[0].radius = wheel_radius;
 	car.wheels[0].width = wheel_width + 1;
@@ -88,7 +88,8 @@ bool ModulePlayer::Start()
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(initial_pos.x,initial_pos.y,initial_pos.z);
-	
+	vehicle->GetTransform(IdentityMatrix.M);
+
 	return true;
 }
 
@@ -107,22 +108,20 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
 			if (nitro > 2) 
 			{
-				if (vehicle->GetKmh() < 100)
+				if (vehicle->GetKmh() < 120)
 				{
 					acceleration = NITRO_ACCELERATION;
 					nitro -= 2;
 				}
-				
 			}
 		}
 		else
 		{
-			if (vehicle->GetKmh() < 120) 
+			if (vehicle->GetKmh() < 50) 
 			acceleration = MAX_ACCELERATION;
 		}
 	}
@@ -151,10 +150,15 @@ update_status ModulePlayer::Update(float dt)
 	if (nitro < MAX_FRAMES_TURBO)
 		nitro += 1;
 
-	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_UP)
 	{
 		vehicle->SetPos(initial_pos.x,initial_pos.y,initial_pos.z);
-		brake = BRAKE_POWER*10;
+		vehicle->SetTransform(IdentityMatrix.M);
+		brake = BRAKE_POWER;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_UP)
+	{
+		vehicle->SetTransform(IdentityMatrix.M);
 	}
 
 	
@@ -174,7 +178,7 @@ update_status ModulePlayer::Update(float dt)
 	App->camera->LookAt(position);
 
 	position.x += 5;
-	position.y += 5;
+	position.y += 20;
 	position.z -= 15;
 	App->camera->Position = position;
 

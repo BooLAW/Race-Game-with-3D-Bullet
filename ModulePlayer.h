@@ -5,7 +5,7 @@
 
 struct PhysVehicle3D;
 
-#define NITRO_ACCELERATION 12000.0f
+#define NITRO_ACCELERATION 52000.0f
 #define MAX_ACCELERATION 10000.0f
 #define TURN_DEGREES 12.0f * DEGTORAD
 #define BRAKE_POWER 10000.0f
@@ -22,7 +22,7 @@ public:
 	bool CleanUp();
 
 public:
-	vec3 initial_pos{ 5, 0, -200 };
+	vec3 initial_pos{ 5, 0, -180 };
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;

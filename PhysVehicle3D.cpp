@@ -26,8 +26,7 @@ void PhysVehicle3D::Render()
 	Cylinder back_wheel;
 	back_wheel.radius = vehicle->getWheelInfo(1).m_wheelsRadius;
 	back_wheel.color = Red;
-
-	Cube wheel_front(1, 0.2, 5);
+	Cube wheel_front(0.5, 0.2, 2);
 	wheel_front.color = Blue;
 
 	for(int i = 0; i < vehicle->getNumWheels(); ++i)
