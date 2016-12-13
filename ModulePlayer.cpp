@@ -112,12 +112,17 @@ update_status ModulePlayer::Update(float dt)
 		{
 			if (nitro > 2) 
 			{
-				acceleration = NITRO_ACCELERATION;
-				nitro -= 2;
+				if (vehicle->GetKmh() < 100)
+				{
+					acceleration = NITRO_ACCELERATION;
+					nitro -= 2;
+				}
+				
 			}
 		}
 		else
 		{
+			if (vehicle->GetKmh() < 120) 
 			acceleration = MAX_ACCELERATION;
 		}
 	}
@@ -134,9 +139,12 @@ update_status ModulePlayer::Update(float dt)
 			turn -= TURN_DEGREES;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
 	{
 		brake = BRAKE_POWER;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	{
 		acceleration = -MAX_ACCELERATION;
 	}
 	
@@ -146,7 +154,6 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT)
 	{
 		vehicle->SetPos(initial_pos.x,initial_pos.y,initial_pos.z);
-		//vehicle->SetTransform()
 		brake = BRAKE_POWER*10;
 	}
 
