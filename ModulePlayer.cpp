@@ -175,12 +175,12 @@ update_status ModulePlayer::Update(float dt)
 	float transformation_matrix[16];
 	vehicle->GetTransform(transformation_matrix);
 	vec3 position(transformation_matrix[12], transformation_matrix[13], transformation_matrix[14]);
-	App->camera->LookAt(position);
+
 
 	position.x += 5;
 	position.y += 20;
 	position.z -= 15;
-	App->camera->Position = position;
+	
 
 	return UPDATE_CONTINUE;
 }
