@@ -59,15 +59,27 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	//Waterfalls
 	Cube top_plane(20, 2, 30);
 	top_plane.SetPos(5, 10, -200);
+	top_plane.color = Blue;
 
 	Cube top_plane2(20, 2, 30);
 	top_plane2.SetPos(5, 8, -170);
+	top_plane2.color = Blue;
+
 
 	Cube top_plane3(20, 2, 30);
 	top_plane3.SetPos(5, 6, -140);
+	top_plane3.color = Blue;
+
 
 	Cube top_plane4(20, 2, 30);
 	top_plane4.SetPos(10, 4, -110);
+	top_plane4.color = Blue;
+
+
+	Cube top_plane5(20, 2, 30);
+	top_plane5.SetPos(10, 4, -110);
+	top_plane5.color = Blue;
+	top_plane.InnerRender();
 
 
 	App->physics->AddBody(left_limit, 0);
@@ -77,6 +89,8 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	App->physics->AddBody(top_plane2, 0);
 	App->physics->AddBody(top_plane3, 0);
 	App->physics->AddBody(top_plane4, 0);
+	App->physics->AddBody(top_plane5, 0);
+
 
 
 
