@@ -23,27 +23,16 @@ PhysVehicle3D::~PhysVehicle3D()
 // ----------------------------------------------------------------------------
 void PhysVehicle3D::Render()
 {
-	Cylinder back_wheel;
-	back_wheel.radius = vehicle->getWheelInfo(1).m_wheelsRadius;
-	back_wheel.color = Red;
+
 	Cube wheel_front(0.5, 0.2, 2);
 	wheel_front.color = Blue;
 
 	for(int i = 0; i < vehicle->getNumWheels(); ++i)
-	{
-		if (i == 0)
-		{
-			vehicle->updateWheelTransform(i);
-			vehicle->getWheelInfo(i).m_worldTransform.getOpenGLMatrix(&back_wheel.transform);
-			back_wheel.Render();
-		}
-		else
-		{
+	{		
 			vehicle->updateWheelTransform(i);
 			vehicle->getWheelInfo(i).m_worldTransform.getOpenGLMatrix(&wheel_front.transform);
 
 			wheel_front.Render();
-		}
 		
 	}
 

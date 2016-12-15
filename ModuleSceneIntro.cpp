@@ -39,6 +39,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
+	p.color = Blue;
 
 	return UPDATE_CONTINUE;
 }
@@ -50,15 +51,36 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 {
+	// - TODO - CHARGE ALL THE VARIABLES IN THEHEADER WHEN FINISHED !!
 	Cube left_limit(3,4,300);
 	left_limit.SetPos(-10, 0, 0);
-
 	Cube right_limit(3,4,300);
 	right_limit.SetPos(10, 0, 0);
+	//Waterfalls
+	Cube top_plane(20, 2, 30);
+	top_plane.SetPos(5, 10, -200);
+
+	Cube top_plane2(20, 2, 30);
+	top_plane2.SetPos(5, 8, -170);
+
+	Cube top_plane3(20, 2, 30);
+	top_plane3.SetPos(5, 6, -140);
+
+	Cube top_plane4(20, 2, 30);
+	top_plane4.SetPos(10, 4, -110);
 
 
-	App->physics->AddBody(left_limit, 1000000);
-	App->physics->AddBody(right_limit, 1000000);
+	App->physics->AddBody(left_limit, 0);
+	App->physics->AddBody(right_limit, 0);
+
+	App->physics->AddBody(top_plane, 0);
+	App->physics->AddBody(top_plane2, 0);
+	App->physics->AddBody(top_plane3, 0);
+	App->physics->AddBody(top_plane4, 0);
+
+
+
+
 }
 
 
