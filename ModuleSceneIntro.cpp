@@ -39,6 +39,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
+	p.color = Blue;
 
 	return UPDATE_CONTINUE;
 }
@@ -56,6 +57,8 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 
 	Cube second_plane(20,1,25);
 	second_plane.SetPos(5, 9, -162);
+
+	// - TODO - CHARGE ALL THE VARIABLES IN THEHEADER WHEN FINISHED !!
 
 	App->physics->AddBody(start_plane, 0);
 	App->physics->AddBody(second_plane, 0);

@@ -50,20 +50,21 @@ bool ModulePlayer::Start()
 	car.num_wheels = 4;
 	car.wheels = new Wheel[4];
 
-	// REAR- LEFT------------------------
-	car.wheels[0].connection.Set(half_width + 0.7f * wheel_width, connection_height+0.5, -half_length + wheel_radius/*half_length - wheel_radius*/);
+
+	// BACK - LEFT ------------------------
+	car.wheels[0].connection.Set(half_width + 0.5*wheel_width, connection_height+0.5, -half_length + wheel_radius/*half_length - wheel_radius*/);
 	car.wheels[0].direction = direction;
 	car.wheels[0].axis = axis;	
 	car.wheels[0].suspensionRestLength = suspensionRestLength;
 	car.wheels[0].radius = wheel_radius;
-	car.wheels[0].width = wheel_width + 1;
+	car.wheels[0].width = wheel_width;
 	car.wheels[0].front = false;
 	car.wheels[0].drive = true;
 	car.wheels[0].brake = true;
 	car.wheels[0].steering = false;
 
 	// FRONT-LEFT ------------------------
-	car.wheels[1].connection.Set(half_width + 0.7f * wheel_width, connection_height, half_length);
+	car.wheels[1].connection.Set(half_width + 0.5*wheel_width, connection_height, half_length);
 	car.wheels[1].direction = direction;
 	car.wheels[1].axis = axis;
 	car.wheels[1].suspensionRestLength = suspensionRestLength;
@@ -75,7 +76,7 @@ bool ModulePlayer::Start()
 	car.wheels[1].steering = true;
 
 	// FRONT-RIGHT ------------------------
-	car.wheels[2].connection.Set(-half_width - 0.7f * wheel_width, connection_height, half_length);
+	car.wheels[2].connection.Set(-half_width - 0.5*wheel_width, connection_height, half_length);
 	car.wheels[2].direction = direction;
 	car.wheels[2].axis = axis;
 	car.wheels[2].suspensionRestLength = suspensionRestLength;
@@ -86,13 +87,13 @@ bool ModulePlayer::Start()
 	car.wheels[2].brake = true;
 	car.wheels[2].steering = true;
 
-	// FRONT-RIGHT ------------------------
-	car.wheels[3].connection.Set (- half_width - 0.7f * wheel_width, connection_height + 0.5, -half_length + wheel_radius/*half_length - wheel_radius*/);
+	// BACK - RIGHT ------------------------
+	car.wheels[3].connection.Set(-half_width - 0.5*wheel_width, connection_height + 0.5, -half_length + wheel_radius/*half_length - wheel_radius*/);
 	car.wheels[3].direction = direction;
 	car.wheels[3].axis = axis;
 	car.wheels[3].suspensionRestLength = suspensionRestLength;
 	car.wheels[3].radius = wheel_radius;
-	car.wheels[3].width = wheel_width + 1;
+	car.wheels[3].width = wheel_width;
 	car.wheels[3].front = false;
 	car.wheels[3].drive = true;
 	car.wheels[3].brake = true;
@@ -189,7 +190,7 @@ update_status ModulePlayer::Update(float dt)
 	vec3 position(transformation_matrix[12], transformation_matrix[13], transformation_matrix[14]);
 
 
-	position.x += 5;
+	position.x += 50;
 	position.y += 20;
 	position.z -= 15;
 	

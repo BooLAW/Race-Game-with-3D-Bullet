@@ -23,9 +23,7 @@ PhysVehicle3D::~PhysVehicle3D()
 // ----------------------------------------------------------------------------
 void PhysVehicle3D::Render()
 {
-	Cylinder back_wheel;
-	back_wheel.radius = vehicle->getWheelInfo(1).m_wheelsRadius;
-	back_wheel.color = Red;
+
 	Cube wheel_front(0.5, 0.2, 2);
 	wheel_front.color = Blue;
 
@@ -35,7 +33,6 @@ void PhysVehicle3D::Render()
 			vehicle->getWheelInfo(i).m_worldTransform.getOpenGLMatrix(&wheel_front.transform);
 
 			wheel_front.Render();
-	
 		
 	}
 

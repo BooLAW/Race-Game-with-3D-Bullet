@@ -29,7 +29,7 @@ public:
 	Cube p_chassis;
 
 	PhysBody3D* pb_wheel;
-	Cylinder p_wheel;
+	Cylinder p_wheel; 
 
 	PhysBody3D* pb_wheel2;
 	Cylinder p_wheel2;
