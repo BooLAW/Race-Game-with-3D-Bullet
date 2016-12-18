@@ -31,19 +31,11 @@ void PhysVehicle3D::Render()
 
 	for(int i = 0; i < vehicle->getNumWheels(); ++i)
 	{
-		if (i == 0)
-		{
-			vehicle->updateWheelTransform(i);
-			vehicle->getWheelInfo(i).m_worldTransform.getOpenGLMatrix(&back_wheel.transform);
-			back_wheel.Render();
-		}
-		else
-		{
 			vehicle->updateWheelTransform(i);
 			vehicle->getWheelInfo(i).m_worldTransform.getOpenGLMatrix(&wheel_front.transform);
 
 			wheel_front.Render();
-		}
+	
 		
 	}
 
