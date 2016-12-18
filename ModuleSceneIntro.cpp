@@ -50,15 +50,17 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 {
-	Cube left_limit(3,4,300);
-	left_limit.SetPos(-10, 0, 0);
+	//-----P1---------
+	Cube start_plane(20,1,25);
+	start_plane.SetPos(5, 10, -180);
 
-	Cube right_limit(3,4,300);
-	right_limit.SetPos(10, 0, 0);
+	Cube second_plane(20,1,25);
+	second_plane.SetPos(5, 9, -162);
 
+	App->physics->AddBody(start_plane, 0);
+	App->physics->AddBody(second_plane, 0);
+	//-----P2---------
 
-	App->physics->AddBody(left_limit, 1000000);
-	App->physics->AddBody(right_limit, 1000000);
 }
 
 

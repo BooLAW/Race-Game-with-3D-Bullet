@@ -22,7 +22,7 @@ public:
 	bool CleanUp();
 
 public:
-	vec3 initial_pos{ 5, 0, -180 };
+	vec3 initial_pos{ 5, 20, -180 };
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
