@@ -130,7 +130,40 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 
 	// - TODO - CHARGE ALL THE VARIABLES IN THEHEADER WHEN FINISHED !!
 	//it's at home 
+	CircuitPolygon.PushBack(Cube(5, 1, 25));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-179, 6.5, 15);
+	CircuitPolygon[i].SetRotation(30, vec3(1, 0, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
 
+	CircuitPolygon.PushBack(Cube(25, 1, 5));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-185, 13, 2);
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(25, 1, 5));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-207, 13, -4);
+	CircuitPolygon[i].SetRotation(-30, vec3(0, 1, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(25, 1, 5));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-212, 13, -20);
+	CircuitPolygon[i].SetRotation(70, vec3(0, 1, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+
+	CircuitPolygon.PushBack(Cube(15, 1, 5));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-202, 13, -32);
+	CircuitPolygon[i].SetRotation(15, vec3(0, 1, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
 	//-----P2---------
 	CircuitPolygon.PushBack(Cube(10, 1, 30));
 	CircuitPolygon[i].SetPos(5, 0, 30);
