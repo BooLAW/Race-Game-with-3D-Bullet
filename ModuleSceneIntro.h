@@ -48,4 +48,5 @@ public:
 	PhysBody3D* sensor_p4;
 	PhysBody3D* sensor_p5;
 	PhysBody3D* sensor_p6;
+	bool start,end;
 };
