@@ -22,11 +22,13 @@ public:
 	bool CleanUp();
 
 public:
-	vec3 initial_pos{ -200, 0, 120 };
+	vec3 initial_pos;
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
 	float brake;
 	uint nitro;
 	Timer timer;
+	uint fast_lap;
+	bool first_lap;
 };

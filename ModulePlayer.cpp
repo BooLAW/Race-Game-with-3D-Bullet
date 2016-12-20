@@ -9,6 +9,7 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 {
 	turn = acceleration = brake = 0.0f;
 	timer.Stop();
+	fast_lap = 0;
 	nitro = 50;
 }
 
@@ -19,7 +20,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-
+	initial_pos = { 0, 1, 0 };
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -119,7 +120,6 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
-
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
@@ -191,12 +191,16 @@ update_status ModulePlayer::Update(float dt)
 	else if (App->scene_intro->end)
 	{
 		timer.Stop();
+		if (first_lap || (timer.Read() ) < fast_lap)
+		{
+			fast_lap = timer.Read();
+			first_lap=false;
+		}
+			
 		App->scene_intro->end = false;
 	}
 
-
-
-	sprintf_s(title, " TIME: %d sec. %.1f Km/h ", timer.Read() / 1000, vehicle->GetKmh());
+	sprintf_s(title, " \t \t TIME: %d sec. \t \t \t %.1f Km/h \t \t \t FAST-LAP: %d sec.", timer.Read() / 1000, vehicle->GetKmh(),fast_lap/1000);
 	App->window->SetTitle(title);
 
 	float transformation_matrix[16];

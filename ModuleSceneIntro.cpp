@@ -53,18 +53,21 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
-
+	//the start and end have to be moved to the first sensor and the last one not in the cave one
 	if (body1 == sensor_p2 && body2 == App->player->vehicle)
 	{
+		//entrance fo the cave
 		start = true;
 		LOG("HIT!");
 	}
 
 	if (body1 == sensor_p3 && body2 == App->player->vehicle)
 	{
+		//out of the cave
 		end = true;
 		LOG("HIT!");
 	}
+	
 }
 
 void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
@@ -89,7 +92,7 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	sensor_p2->SetPos(5, 0, 30);//in tunel
 	sensor_p2->GetTransform(&sensor_form.transform);
 	sensor_p2->collision_listeners.add(this);
-	sensor_p2->SetId(1);
+	sensor_p2->SetId(2);
 
 
 	sensor_p3 = App->physics->AddBody(sensor_form, 0.0f);
@@ -97,7 +100,7 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	sensor_p3->SetPos(-179, 0, 40);//out tunel
 	sensor_p3->GetTransform(&sensor_form.transform);
 	sensor_p3->collision_listeners.add(this);
-	sensor_p3->SetId(2);
+	sensor_p3->SetId(3);
 
 
 	sensor_p4 = App->physics->AddBody(sensor_form, 0.0f);
@@ -105,7 +108,7 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	//sensor_p4->SetPos();
 	sensor_p4->GetTransform(&sensor_form.transform);
 	sensor_p4->collision_listeners.add(this);
-	sensor_p4->SetId(1);
+	sensor_p4->SetId(4);
 
 
 	sensor_p5 = App->physics->AddBody(sensor_form, 0.0f);
@@ -113,7 +116,7 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	//sensor_p5->SetPos();
 	sensor_p5->GetTransform(&sensor_form.transform);
 	sensor_p5->collision_listeners.add(this);
-	sensor_p5->SetId(1);
+	sensor_p5->SetId(5);
 
 
 	sensor_p6 = App->physics->AddBody(sensor_form, 0.0f);
@@ -121,7 +124,7 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	//sensor_p6->SetPos();
 	sensor_p6->GetTransform(&sensor_form.transform);
 	sensor_p6->collision_listeners.add(this);
-	sensor_p6->SetId(1);
+	sensor_p6->SetId(6);
 	int i = 0;
 	//-----P1---------
 
