@@ -37,6 +37,7 @@ public:
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
 	//-----CIRCUIT-------
-
+	p2DynArray<Cube> CircuitPolygon;
+	//------PART 2 ------
 
 };
