@@ -3,6 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModulePhysics3D.h"
 #include "Primitive.h"
+#include "PhysVehicle3D.h"
 #include "PhysBody3D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -21,7 +22,7 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 	CreateLinearCircuit(vec3(10, 0, 0));
-
+	start = end = false;
 	return ret;
 }
 
@@ -52,10 +53,74 @@ update_status ModuleSceneIntro::Update(float dt)
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 
+	if (body1 == sensor_p2 && body2 == App->player->vehicle)
+	{
+		start = true;
+		LOG("HIT!");
+	}
+
+	if (body1 == sensor_p3 && body2 == App->player->vehicle)
+	{
+		end = true;
+		LOG("HIT!");
+	}
 }
 
 void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 {
+	//----------SENSORS-----------
+	sensor_start = App->physics->AddBody(sensor_form, 0.0f);
+	sensor_start->SetAsSensor(true);
+	//sensor_start->SetPos();
+	sensor_start->GetTransform(&sensor_form.transform);
+	sensor_start->collision_listeners.add(this);
+	sensor_start->SetId(0);
+
+	sensor_p1 = App->physics->AddBody(sensor_form, 0.0f);
+	sensor_p1->SetAsSensor(true);
+	//sensor_p1->SetPos();
+	sensor_p1->GetTransform(&sensor_form.transform);
+	sensor_p1->collision_listeners.add(this);
+	sensor_p1->SetId(1);
+
+	sensor_p2 = App->physics->AddBody(sensor_form, 0.0f);
+	sensor_p2->SetAsSensor(true);
+	sensor_p2->SetPos(5, 0, 30);//in tunel
+	sensor_p2->GetTransform(&sensor_form.transform);
+	sensor_p2->collision_listeners.add(this);
+	sensor_p2->SetId(1);
+
+
+	sensor_p3 = App->physics->AddBody(sensor_form, 0.0f);
+	sensor_p3->SetAsSensor(true);
+	sensor_p3->SetPos(-179, 0, 40);//out tunel
+	sensor_p3->GetTransform(&sensor_form.transform);
+	sensor_p3->collision_listeners.add(this);
+	sensor_p3->SetId(2);
+
+
+	sensor_p4 = App->physics->AddBody(sensor_form, 0.0f);
+	sensor_p4->SetAsSensor(true);
+	//sensor_p4->SetPos();
+	sensor_p4->GetTransform(&sensor_form.transform);
+	sensor_p4->collision_listeners.add(this);
+	sensor_p4->SetId(1);
+
+
+	sensor_p5 = App->physics->AddBody(sensor_form, 0.0f);
+	sensor_p5->SetAsSensor(true);
+	//sensor_p5->SetPos();
+	sensor_p5->GetTransform(&sensor_form.transform);
+	sensor_p5->collision_listeners.add(this);
+	sensor_p5->SetId(1);
+
+
+	sensor_p6 = App->physics->AddBody(sensor_form, 0.0f);
+	sensor_p6->SetAsSensor(true);
+	//sensor_p6->SetPos();
+	sensor_p6->GetTransform(&sensor_form.transform);
+	sensor_p6->collision_listeners.add(this);
+	sensor_p6->SetId(1);
 	int i = 0;
 	//-----P1---------
 

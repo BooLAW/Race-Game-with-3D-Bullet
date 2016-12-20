@@ -18,10 +18,14 @@ public:
 	void GetTransform(float* matrix) const;
 	void SetTransform(const float* matrix) const;
 	void SetPos(float x, float y, float z);
-
+	void SetAsSensor(bool is_sensor);
+	bool IsSensor() const;
+	int GetId()const;
+	void SetId(int id);
 private:
 	btRigidBody* body = nullptr;
-
+	bool is_sensor = false;
+	int id;
 public:
 	p2List<Module*> collision_listeners;
 };

@@ -8,6 +8,7 @@
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
 	turn = acceleration = brake = 0.0f;
+	timer.Stop();
 	nitro = 50;
 }
 
@@ -182,7 +183,20 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	if (App->scene_intro->start)
+	{
+		timer.Start();
+		App->scene_intro->start = false;
+	}
+	else if (App->scene_intro->end)
+	{
+		timer.Stop();
+		App->scene_intro->end = false;
+	}
+
+
+
+	sprintf_s(title, " TIME: %d sec. %.1f Km/h ", timer.Read() / 1000, vehicle->GetKmh());
 	App->window->SetTitle(title);
 
 	float transformation_matrix[16];
