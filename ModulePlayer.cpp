@@ -20,7 +20,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-	initial_pos = { -170, 47, -535 };
+	initial_pos = { 0,0,0 };// -170, 47, -535
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------

@@ -20,7 +20,8 @@ bool ModuleSceneIntro::Start()
 	bool ret = true;
 	sensor_form = { 15,15,1 };
 	floor_form = {1000,1,2000};
-
+	ramp_form = {250,250,1}; 
+	landing_form = {60,1,60};
 	App->audio->PlayMusic("soundtrack.ogg", 1);
 	App->audio->LoadFx("ballhitwall");
 	//LOADS
@@ -110,52 +111,52 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 
 	sensor_start = App->physics->AddBody(sensor_form, 0.0f);
 	sensor_start->SetAsSensor(true);
-	//sensor_start->SetPos();//beginning
+	sensor_start->SetPos(-170, 47, -535);//beginning
 	sensor_start->GetTransform(&sensor_form.transform);
 	sensor_start->collision_listeners.add(this);
 	sensor_start->SetId(0);
 
 	sensor_p1 = App->physics->AddBody(sensor_form, 0.0f);
 	sensor_p1->SetAsSensor(true);
-	//sensor_p1->SetPos();//slope(to check if it moves downwards)
+	sensor_p1->SetPos(-170, 40, -500);//slope(to check if it moves downwards)
 	sensor_p1->GetTransform(&sensor_form.transform);
 	sensor_p1->collision_listeners.add(this);
 	sensor_p1->SetId(1);
 
 	sensor_p3 = App->physics->AddBody(sensor_form, 0.0f);
 	sensor_p3->SetAsSensor(true);
-	sensor_p3->SetPos(-179, 0, 40);//out tunel
+	sensor_p3->SetPos(-179, 0, 40);//in tunel
 	sensor_p3->GetTransform(&sensor_form.transform);
 	sensor_p3->collision_listeners.add(this);
 	sensor_p3->SetId(3);
 
 	sensor_p2 = App->physics->AddBody(sensor_form, 0.0f);
 	sensor_p2->SetAsSensor(true);
-	sensor_p2->SetPos(5, 0, 30);//in tunel
+	sensor_p2->SetPos(5, 0, 30);//out tunel
 	sensor_p2->GetTransform(&sensor_form.transform);
 	sensor_p2->collision_listeners.add(this);
 	sensor_p2->SetId(2);
 
 	sensor_p4 = App->physics->AddBody(sensor_form, 0.0f);
 	sensor_p4->SetAsSensor(true);
-	//sensor_p4->SetPos();
+	sensor_p4->SetPos(-225,0,-210);//slalom
 	sensor_p4->GetTransform(&sensor_form.transform);
 	sensor_p4->collision_listeners.add(this);
 	sensor_p4->SetId(4);
 
 
-	sensor_p5 = App->physics->AddBody(sensor_form, 0.0f);
+	sensor_p5 = App->physics->AddBody(ramp_form, 0.0f);
 	sensor_p5->SetAsSensor(true);
-	//sensor_p5->SetPos();
-	sensor_p5->GetTransform(&sensor_form.transform);
+	sensor_p5->SetPos(5,10,-50);//before jumping
+	sensor_p5->GetTransform(&ramp_form.transform);
 	sensor_p5->collision_listeners.add(this);
 	sensor_p5->SetId(5);
 
 
-	sensor_p6 = App->physics->AddBody(sensor_form, 0.0f);
+	sensor_p6 = App->physics->AddBody(landing_form, 0.0f);
 	sensor_p6->SetAsSensor(true);
-	//sensor_p6->SetPos();
-	sensor_p6->GetTransform(&sensor_form.transform);
+	sensor_p6->SetPos(0,0,-185);//landing
+	sensor_p6->GetTransform(&landing_form.transform);
 	sensor_p6->collision_listeners.add(this);
 	sensor_p6->SetId(6);
 

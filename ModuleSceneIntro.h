@@ -42,6 +42,8 @@ public:
 	//------Sensor 2 ------
 	Cube sensor_form;
 	Cube floor_form;
+	Cube ramp_form;
+	Cube landing_form;
 
 	PhysBody3D* sensor_start;
 	PhysBody3D* sensor_p1;
