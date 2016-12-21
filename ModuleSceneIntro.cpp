@@ -58,7 +58,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	for (int j = 0; j < CircuitCylinder.Count(); j++)
 	{
-		CircuitPolygon[j].Render();
+		CircuitCylinder[j].Render();
 	}
 
 	return UPDATE_CONTINUE;
@@ -295,27 +295,27 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	App->physics->AddBody(CircuitPolygon[i], 0);
 	i++;
 
-	CircuitPolygon.PushBack(Cube(25, 1, 5));
+	CircuitPolygon.PushBack(Cube(25, 1, 6));
 	CircuitPolygon[i].color = LightBlue;
 	CircuitPolygon[i].SetPos(-185, 13, 2);
 	App->physics->AddBody(CircuitPolygon[i], 0);
 	i++;
 
-	CircuitPolygon.PushBack(Cube(25, 1, 5));
+	CircuitPolygon.PushBack(Cube(25, 1, 6));
 	CircuitPolygon[i].color = LightBlue;
 	CircuitPolygon[i].SetPos(-207, 13, -4);
 	CircuitPolygon[i].SetRotation(-30, vec3(0, 1, 0));
 	App->physics->AddBody(CircuitPolygon[i], 0);
 	i++;
 
-	CircuitPolygon.PushBack(Cube(25, 1, 5));
+	CircuitPolygon.PushBack(Cube(25, 1, 6));
 	CircuitPolygon[i].color = LightBlue;
 	CircuitPolygon[i].SetPos(-212, 13, -20);
 	CircuitPolygon[i].SetRotation(70, vec3(0, 1, 0));
 	App->physics->AddBody(CircuitPolygon[i], 0);
 	i++;
 
-	CircuitPolygon.PushBack(Cube(15, 1, 5));
+	CircuitPolygon.PushBack(Cube(15, 1, 6));
 	CircuitPolygon[i].color = LightBlue;
 	CircuitPolygon[i].SetPos(-202, 13, -32);
 	CircuitPolygon[i].SetRotation(15, vec3(0, 1, 0));
@@ -765,6 +765,151 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 
 	CircuitCylinder.PushBack(Cylinder(1, 5));
 	CircuitCylinder[j].SetPos(-167, 1, -260);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-208, 1, -220);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-220, 1, -223);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-195, 1, -223);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-208, 1, -215);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-215, 1, -215);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-220, 1, -210);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-224, 1, -215);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-230, 1, -195);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-225, 1, -190);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-225, 1, -190);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-235, 1, -180);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-225, 1, -185);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-230, 1, -180);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-230, 1, -180);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-230, 1, -165);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-233, 1, -160);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-239, 1, -160);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-221, 1, -160);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-232, 1, -150);
+	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
+	App->physics->AddBody(CircuitCylinder[j], 0);
+	CircuitCylinder[j].color = Red;
+	j++;
+
+
+	CircuitCylinder.PushBack(Cylinder(1, 5));
+	CircuitCylinder[j].SetPos(-227, 1, -148);
 	CircuitCylinder[j].SetRotation(90, vec3(0, 0, 1));
 	App->physics->AddBody(CircuitCylinder[j], 0);
 	CircuitCylinder[j].color = Red;

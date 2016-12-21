@@ -20,7 +20,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-	initial_pos = { 2,0,2 };// -170, 47, -535
+	initial_pos = { -170, 47, -535 };// -170, 47, -535
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -171,18 +171,11 @@ update_status ModulePlayer::Update(float dt)
 		vehicle->body->setAngularVelocity(btVector3(0, 0, 0));
 		brake = BRAKE_POWER;
 		App->scene_intro->fallen = false;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_UP )
-	{
-		int x = (int)vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getX();
-		int y = (int)vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getY();
-		int z = (int)vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getZ();
+		App->scene_intro->landed = false;
 
-		vehicle->SetPos(x, y, z);
-		vehicle->body->setLinearVelocity(btVector3(0, 0, 0));
-		vehicle->body->setAngularVelocity(btVector3(0, 0, 0));
-		brake = BRAKE_POWER;
+
 	}
+	
 	if(App->scene_intro->on_tunnel)
 		App->camera->Move({ 0,-6,0 });
 
