@@ -129,6 +129,77 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	sensor_p6->SetId(6);
 	
 	int i = 0;
+
+	CircuitPolygon.PushBack(Cube(5, 1, 25));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-179, 6.5, 15);
+	CircuitPolygon[i].SetRotation(30, vec3(1, 0, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(25, 1, 5));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-185, 13, 2);
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(25, 1, 5));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-207, 13, -4);
+	CircuitPolygon[i].SetRotation(-30, vec3(0, 1, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(25, 1, 5));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-212, 13, -20);
+	CircuitPolygon[i].SetRotation(70, vec3(0, 1, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+
+	CircuitPolygon.PushBack(Cube(15, 1, 5));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-202, 13, -32);
+	CircuitPolygon[i].SetRotation(15, vec3(0, 1, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+
+	CircuitPolygon.PushBack(Cube(5, 1, 40));
+	CircuitPolygon[i].color = Red;
+	CircuitPolygon[i].SetPos(-192, 6.5, -52);
+	CircuitPolygon[i].SetRotation(-30, vec3(1, 1, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+
+
+	CircuitPolygon.PushBack(Cube(20, 1, 95));
+	CircuitPolygon[i].SetPos(-200, 1, -230);
+	CircuitPolygon[i].SetRotation(-45, vec3(0, 1, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	CircuitPolygon[i].color = White;
+	i++;
+
+	CircuitPolygon.PushBack(Cube(20, 1, 80));
+	CircuitPolygon[i].SetPos(-170, 1, -295);
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	CircuitPolygon[i].color = White;
+	i++;
+
+	CircuitPolygon.PushBack(Cube(20, 1, 95));
+	CircuitPolygon[i].SetPos(-200.5, 1, -95);
+	CircuitPolygon[i].SetRotation(45, vec3(0, 1, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	CircuitPolygon[i].color = Blue;
+	i++;
+
+	CircuitPolygon.PushBack(Cube(20, 1, 80));
+	CircuitPolygon[i].SetPos(-230, 1, -160);
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	CircuitPolygon[i].color = Blue;
+	i++;
 	//-----P1---------
 	CircuitPolygon.PushBack(Cube(10, 1, 60));
 	CircuitPolygon[i].color = Green;
