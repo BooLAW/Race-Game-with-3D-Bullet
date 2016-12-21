@@ -49,4 +49,5 @@ public:
 	PhysBody3D* sensor_p5;
 	PhysBody3D* sensor_p6;
 	bool start,end;
+	bool on_tunnel;
 };

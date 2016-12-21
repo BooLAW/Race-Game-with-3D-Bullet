@@ -24,6 +24,7 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 0, 0));
 	CreateLinearCircuit(vec3(10, 0, 0));
 	start = end = false;
+	on_tunnel = false;
 	return ret;
 }
 
@@ -54,16 +55,18 @@ update_status ModuleSceneIntro::Update(float dt)
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	//the start and end have to be moved to the first sensor and the last one not in the cave one
-	if (body1 == sensor_p2 && body2 == App->player->vehicle)
+	if (body1 == sensor_p3 && body2 == App->player->vehicle)
 	{
 		//entrance fo the cave
+		on_tunnel = true;
 		start = true;
 		LOG("HIT!");
 	}
 
-	if (body1 == sensor_p3 && body2 == App->player->vehicle)
+	if (body1 == sensor_p2 && body2 == App->player->vehicle)
 	{
 		//out of the cave
+		on_tunnel = false;
 		end = true;
 		LOG("HIT!");
 	}

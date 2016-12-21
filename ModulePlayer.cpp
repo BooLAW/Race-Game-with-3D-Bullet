@@ -52,7 +52,6 @@ bool ModulePlayer::Start()
 	car.num_wheels = 4;
 	car.wheels = new Wheel[4];
 
-
 	// BACK - LEFT ------------------------
 	car.wheels[0].connection.Set(half_width + 0.5*wheel_width, connection_height+0.5, -half_length + wheel_radius/*half_length - wheel_radius*/);
 	car.wheels[0].direction = direction;
@@ -122,7 +121,7 @@ update_status ModulePlayer::Update(float dt)
 	turn = acceleration = brake = 0.0f;
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && !(App->scene_intro->on_tunnel))
 		{
 			if (nitro > 2) 
 			{
@@ -174,14 +173,15 @@ update_status ModulePlayer::Update(float dt)
 	{
 		vehicle->SetTransform(IdentityMatrix.M);
 	}
+	if(App->scene_intro->on_tunnel)
+		App->camera->Move({ 0,-6,0 });
 
-	
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
 	vehicle->ApplyEngineForce(acceleration);
-
 	vehicle->Render();
 
+	//---SET THE TITLE----- 
 	char title[80];
 	if (App->scene_intro->start)
 	{
