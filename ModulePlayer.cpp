@@ -11,6 +11,7 @@ ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, s
 	timer.Stop();
 	fast_lap = 0;
 	nitro = 50;
+	first_lap = true;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -192,7 +193,7 @@ update_status ModulePlayer::Update(float dt)
 		timer.Start();
 		App->scene_intro->start = false;
 	}
-	else if (App->scene_intro->landed)
+	else if (App->scene_intro->end)
 	{
 		timer.Stop();
 		if (first_lap || (timer.Read() ) < fast_lap)
@@ -200,9 +201,10 @@ update_status ModulePlayer::Update(float dt)
 			fast_lap = timer.Read();
 			first_lap=false;
 		}
-			
 		App->scene_intro->end = false;
+
 	}
+	
 	if (App->scene_intro->landed){
 		App->audio->PlayFx(2, 0);
 		App->scene_intro->landed = false;

@@ -1,4 +1,4 @@
-#include "Globals.h"
+	#include "Globals.h"
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "ModulePhysics3D.h"
@@ -28,7 +28,6 @@ bool ModuleSceneIntro::Start()
 	App->audio->LoadFx("FX/fail.wav");
 
 	
-
 	//LOADS
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
@@ -73,14 +72,12 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	{
 		//entrance fo the cave
 		on_tunnel = true;
-		start = true;
 		LOG("HIT!");
 	}
 	if (body1 == sensor_p2 && body2 == App->player->vehicle)
 	{
 		//out of the cave
 		on_tunnel = false;
-		end = true;
 		LOG("HIT!");
 	}
 	if (body1 == sensor_start && body2 == App->player->vehicle)
@@ -214,8 +211,6 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	CircuitPolygon[i].SetRotation(-30, vec3(1, 1, 0));
 	App->physics->AddBody(CircuitPolygon[i], 0);
 	i++;
-
-
 
 	CircuitPolygon.PushBack(Cube(20, 1, 95));
 	CircuitPolygon[i].SetPos(-200, 1, -230);
