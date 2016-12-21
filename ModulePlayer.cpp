@@ -20,7 +20,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-	initial_pos = { 0,0,0 };// -170, 47, -535
+	initial_pos = { 2,0,2 };// -170, 47, -535
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -209,7 +209,8 @@ update_status ModulePlayer::Update(float dt)
 			
 		App->scene_intro->end = false;
 	}
-
+	if (App->scene_intro->landed)
+		App->audio->PlayFx(1, 0);
 	sprintf_s(title, " \t \t TIME: %d sec. \t \t \t %.1f Km/h \t \t \t FAST-LAP: %d sec.", timer.Read() / 1000, vehicle->GetKmh(),fast_lap/1000);
 	App->window->SetTitle(title);
 

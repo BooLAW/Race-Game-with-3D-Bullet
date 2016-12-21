@@ -38,6 +38,8 @@ public:
 	PhysMotor3D* right_wheel;
 	//-----CIRCUIT-------
 	p2DynArray<Cube> CircuitPolygon;
+	p2DynArray<Cylinder> CircuitCylinder;
+
 
 	//------Sensor 2 ------
 	Cube sensor_form;
