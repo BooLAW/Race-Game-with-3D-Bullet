@@ -25,6 +25,8 @@ bool ModuleSceneIntro::Start()
 	App->audio->PlayMusic("Music/soundtrack.ogg", 1);
 	App->audio->LoadFx("FX/ballhitwall.wav");
 	App->audio->LoadFx("FX/win.wav");
+	App->audio->LoadFx("FX/fail.wav");
+
 	
 
 	//LOADS
@@ -95,7 +97,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	}
 	if (body1 == sensor_p5 && body2 == App->player->vehicle)
 	{
-		//LOSE SOUND AND RESTART
+		//LOSE SOUND AND RESTARt
 		//start cool song
 		LOG("HIT!");
 	}

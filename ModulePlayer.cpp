@@ -165,17 +165,18 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_UP || App->scene_intro->fallen)
 	{
+		
 		vehicle->SetPos(initial_pos.x,initial_pos.y,initial_pos.z);
 		vehicle->SetTransform(IdentityMatrix.M);
 		vehicle->body->setLinearVelocity(btVector3(0, 0, 0));
 		vehicle->body->setAngularVelocity(btVector3(0, 0, 0));
 		brake = BRAKE_POWER;
+
+		App->audio->PlayFx(3, 0);
+		
 		App->scene_intro->fallen = false;
 		App->scene_intro->landed = false;
-
-
 	}
-	
 	if(App->scene_intro->on_tunnel)
 		App->camera->Move({ 0,-6,0 });
 
@@ -191,7 +192,7 @@ update_status ModulePlayer::Update(float dt)
 		timer.Start();
 		App->scene_intro->start = false;
 	}
-	else if (App->scene_intro->end)
+	else if (App->scene_intro->landed)
 	{
 		timer.Stop();
 		if (first_lap || (timer.Read() ) < fast_lap)
@@ -205,14 +206,17 @@ update_status ModulePlayer::Update(float dt)
 	if (App->scene_intro->landed){
 		App->audio->PlayFx(2, 0);
 		App->scene_intro->landed = false;
+		sprintf_s(title, " \t \t \t \t \t \t YOU WIN \t \t \t \t \t \t");
+		App->window->SetTitle(title);
 	}
-	sprintf_s(title, " \t \t TIME: %d sec. \t \t \t %.1f Km/h \t \t \t FAST-LAP: %d sec.", timer.Read() / 1000, vehicle->GetKmh(),fast_lap/1000);
-	App->window->SetTitle(title);
-
+	else 
+	{
+		sprintf_s(title, " \t \t TIME: %d sec. \t \t \t %.1f Km/h \t \t \t FAST-LAP: %d sec.", timer.Read() / 1000, vehicle->GetKmh(), fast_lap / 1000);
+		App->window->SetTitle(title);
+	}
 	float transformation_matrix[16];
 	vehicle->GetTransform(transformation_matrix);
 	vec3 position(transformation_matrix[12], transformation_matrix[13], transformation_matrix[14]);
-
 
 	position.x += 50;
 	position.y += 20;

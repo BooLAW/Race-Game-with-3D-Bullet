@@ -8,7 +8,7 @@ struct PhysVehicle3D;
 #define NITRO_ACCELERATION 40000.0f
 #define MAX_ACCELERATION 10000.0f
 #define TURN_DEGREES 12.0f * DEGTORAD
-#define BRAKE_POWER 10000.0f
+#define BRAKE_POWER 1000.0f
 #define MAX_FRAMES_TURBO 20
 
 class ModulePlayer : public Module

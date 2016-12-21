@@ -1,12 +1,7 @@
-﻿  ModulePlayer.cpp
-ModulePlayer.cpp(56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-ModulePlayer.cpp(68): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-ModulePlayer.cpp(80): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-ModulePlayer.cpp(92): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Generating code
-  1 of 447 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+﻿  Generating code
+  0 of 447 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  3D Physics.vcxproj -> C:\Users\asieram\Documents\GitHub\Race-Game-with-3D-Bullet\Release\3D Physics - class5.exe
-  3D Physics.vcxproj -> C:\Users\asieram\Documents\GitHub\Race-Game-with-3D-Bullet\Release\3D Physics - class5.pdb (Full PDB)
+  3D Physics.vcxproj -> C:\Users\paubv1\Documents\GitHub\Race-Game-with-3D-Bullet\Release\3D Physics - class5.exe
+  3D Physics.vcxproj -> C:\Users\paubv1\Documents\GitHub\Race-Game-with-3D-Bullet\Release\3D Physics - class5.pdb (Full PDB)
