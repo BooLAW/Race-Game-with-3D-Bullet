@@ -58,4 +58,5 @@ public:
 	bool start,end;
 	bool on_tunnel;
 	bool fallen;
+	bool landed;
 };

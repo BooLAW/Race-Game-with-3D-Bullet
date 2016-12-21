@@ -63,10 +63,8 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		//entrance fo the cave
 		on_tunnel = true;
 		start = true;
-		
 		LOG("HIT!");
 	}
-
 	if (body1 == sensor_p2 && body2 == App->player->vehicle)
 	{
 		//out of the cave
@@ -76,27 +74,31 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	}
 	if (body1 == sensor_start && body2 == App->player->vehicle)
 	{
-		//start music
+		//start music/game
 		start = true;
-		LOG("HIT!");
-	}
-	if (body1 == sensor_end && body2 == App->player->vehicle)
-	{
-		//end music
-		end = true;
 		LOG("HIT!");
 	}
 	if (body1 == sensor_floor && body2 == App->player->vehicle)
 	{
 		//LOSE SOUND AND RESTART
-		
 		fallen = true;
 		LOG("HIT!");
 	}
-	App->audio->PlayFx(0, 1);
-
+	if (body1 == sensor_p5 && body2 == App->player->vehicle)
+	{
+		//LOSE SOUND AND RESTART
+		//start cool song
+		LOG("HIT!");
+	}
+	if (body1 == sensor_p6 && body2 == App->player->vehicle)
+	{
+		//land and restart
+		//play winning music
+		landed = true;
+		end = true;
+		LOG("HIT!");
+	}
 }
-
 void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 {
 	//----------SENSORS-----------
@@ -107,7 +109,6 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	sensor_floor->GetTransform(&floor_form.transform);
 	sensor_floor->collision_listeners.add(this);
 	sensor_floor->SetId(-1);
-
 
 	sensor_start = App->physics->AddBody(sensor_form, 0.0f);
 	sensor_start->SetAsSensor(true);
@@ -144,14 +145,12 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	sensor_p4->collision_listeners.add(this);
 	sensor_p4->SetId(4);
 
-
 	sensor_p5 = App->physics->AddBody(ramp_form, 0.0f);
 	sensor_p5->SetAsSensor(true);
 	sensor_p5->SetPos(5,10,-50);//before jumping
 	sensor_p5->GetTransform(&ramp_form.transform);
 	sensor_p5->collision_listeners.add(this);
 	sensor_p5->SetId(5);
-
 
 	sensor_p6 = App->physics->AddBody(landing_form, 0.0f);
 	sensor_p6->SetAsSensor(true);
