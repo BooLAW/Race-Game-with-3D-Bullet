@@ -39,7 +39,7 @@ public:
 	//-----CIRCUIT-------
 	p2DynArray<Cube> CircuitPolygon;
 	p2DynArray<Cylinder> CircuitCylinder;
-
+	p2List<PhysBody3D*> Constraints;
 
 	//------Sensor 2 ------
 	Cube sensor_form;
