@@ -167,6 +167,8 @@ update_status ModulePlayer::Update(float dt)
 	{
 		vehicle->SetPos(initial_pos.x,initial_pos.y,initial_pos.z);
 		vehicle->SetTransform(IdentityMatrix.M);
+		vehicle->body->setLinearVelocity(btVector3(0, 0, 0));
+		vehicle->body->setAngularVelocity(btVector3(0, 0, 0));
 		brake = BRAKE_POWER;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_UP)

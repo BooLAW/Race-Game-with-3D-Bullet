@@ -23,10 +23,10 @@ public:
 	int GetId()const;
 	void SetId(int id);
 private:
-	btRigidBody* body = nullptr;
 	bool is_sensor = false;
 	int id;
 public:
+	btRigidBody* body = nullptr;
 	p2List<Module*> collision_listeners;
 };
 
