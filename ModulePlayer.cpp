@@ -20,7 +20,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-	initial_pos = { -179, 40, 10 };
+	initial_pos = { -170, 47, -535 };
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -163,17 +163,14 @@ update_status ModulePlayer::Update(float dt)
 	if (nitro < MAX_FRAMES_TURBO)
 		nitro += 1;
 
-	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_UP)
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_UP || App->scene_intro->fallen)
 	{
 		vehicle->SetPos(initial_pos.x,initial_pos.y,initial_pos.z);
 		vehicle->SetTransform(IdentityMatrix.M);
 		vehicle->body->setLinearVelocity(btVector3(0, 0, 0));
 		vehicle->body->setAngularVelocity(btVector3(0, 0, 0));
 		brake = BRAKE_POWER;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_UP)
-	{
-		vehicle->SetTransform(IdentityMatrix.M);
+		App->scene_intro->fallen = false;
 	}
 	if(App->scene_intro->on_tunnel)
 		App->camera->Move({ 0,-6,0 });

@@ -63,7 +63,7 @@ bool ModulePhysics3D::Start()
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(0.0f, myMotionState, colShape);
 
 		btRigidBody* body = new btRigidBody(rbInfo);
-		world->addRigidBody(body);
+		//world->addRigidBody(body);//REMOVE FLOOR
 	}
 
 	return true;

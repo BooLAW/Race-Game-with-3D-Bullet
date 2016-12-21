@@ -41,6 +41,8 @@ public:
 
 	//------Sensor 2 ------
 	Cube sensor_form;
+	Cube floor_form;
+
 	PhysBody3D* sensor_start;
 	PhysBody3D* sensor_p1;
 	PhysBody3D* sensor_p2;
@@ -48,6 +50,10 @@ public:
 	PhysBody3D* sensor_p4;
 	PhysBody3D* sensor_p5;
 	PhysBody3D* sensor_p6;
+	PhysBody3D* sensor_end;
+	PhysBody3D* sensor_floor;
+
 	bool start,end;
 	bool on_tunnel;
+	bool fallen;
 };
