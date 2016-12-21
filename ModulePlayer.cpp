@@ -172,6 +172,17 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 		App->scene_intro->fallen = false;
 	}
+	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_UP )
+	{
+		int x = (int)vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getX();
+		int y = (int)vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getY();
+		int z = (int)vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getZ();
+
+		vehicle->SetPos(x, y, z);
+		vehicle->body->setLinearVelocity(btVector3(0, 0, 0));
+		vehicle->body->setAngularVelocity(btVector3(0, 0, 0));
+		brake = BRAKE_POWER;
+	}
 	if(App->scene_intro->on_tunnel)
 		App->camera->Move({ 0,-6,0 });
 

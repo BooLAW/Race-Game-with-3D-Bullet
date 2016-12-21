@@ -19,9 +19,11 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 	sensor_form = { 15,15,1 };
-	floor_form = {500,1,500};
+	floor_form = {1000,1,2000};
 
 	App->audio->PlayMusic("soundtrack.ogg", 1);
+	App->audio->LoadFx("ballhitwall");
+	//LOADS
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 	CreateLinearCircuit(vec3(10, 0, 0));
@@ -60,6 +62,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		//entrance fo the cave
 		on_tunnel = true;
 		start = true;
+		
 		LOG("HIT!");
 	}
 
@@ -85,10 +88,11 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	if (body1 == sensor_floor && body2 == App->player->vehicle)
 	{
 		//LOSE SOUND AND RESTART
-		//App->audio->PlayFx() 
+		
 		fallen = true;
 		LOG("HIT!");
 	}
+	App->audio->PlayFx(0, 1);
 
 }
 
