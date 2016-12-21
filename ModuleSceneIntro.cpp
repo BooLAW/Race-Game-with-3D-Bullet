@@ -127,8 +127,53 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	sensor_p6->GetTransform(&sensor_form.transform);
 	sensor_p6->collision_listeners.add(this);
 	sensor_p6->SetId(6);
+	
 	int i = 0;
 	//-----P1---------
+	CircuitPolygon.PushBack(Cube(10, 1, 60));
+	CircuitPolygon[i].color = Green;
+	CircuitPolygon[i].SetPos(-179, 30, 15);
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(10, 1, 60));
+	CircuitPolygon[i].color = Green;
+	CircuitPolygon[i].SetPos(-179, 15, 70);
+	CircuitPolygon[i].SetRotation(30, vec3(1, 0, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(10, 1, 60));
+	CircuitPolygon[i].color = Green;
+	CircuitPolygon[i].SetPos(-179, 15, 70);
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(10, 1, 60));
+	CircuitPolygon[i].color = Green;
+	CircuitPolygon[i].SetPos(-179, 0, 125);
+	CircuitPolygon[i].SetRotation(30, vec3(1, 0, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(10, 1, 60));
+	CircuitPolygon[i].color = Green;
+	CircuitPolygon[i].SetPos(-179, 0, 125);
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(10, 1, 60));
+	CircuitPolygon[i].color = Green;
+	CircuitPolygon[i].SetPos(-179, -15, 180);
+	CircuitPolygon[i].SetRotation(30, vec3(1, 0, 0));
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
+
+	CircuitPolygon.PushBack(Cube(10, 1, 60));
+	CircuitPolygon[i].color = Green;
+	CircuitPolygon[i].SetPos(-179, -15, 180);
+	App->physics->AddBody(CircuitPolygon[i], 0);
+	i++;
 
 	// - TODO - CHARGE ALL THE VARIABLES IN THEHEADER WHEN FINISHED !!
 	//it's at home 
@@ -158,7 +203,6 @@ void ModuleSceneIntro::CreateLinearCircuit(vec3 position)
 	CircuitPolygon[i].SetRotation(70, vec3(0, 1, 0));
 	App->physics->AddBody(CircuitPolygon[i], 0);
 	i++;
-
 
 	CircuitPolygon.PushBack(Cube(15, 1, 5));
 	CircuitPolygon[i].color = Red;

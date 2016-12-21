@@ -20,7 +20,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-	initial_pos = { 0, 1, 0 };
+	initial_pos = { -179, 40, 10 };
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -30,7 +30,7 @@ bool ModulePlayer::Start()
 	car.suspensionStiffness = 10.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.1f;
-	car.maxSuspensionTravelCm = 50.0f;
+	car.maxSuspensionTravelCm = 5.0f;
 	car.frictionSlip = 1000;
 	car.maxSuspensionForce = 6000.0f;
 	
