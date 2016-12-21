@@ -202,8 +202,10 @@ update_status ModulePlayer::Update(float dt)
 			
 		App->scene_intro->end = false;
 	}
-	if (App->scene_intro->landed)
-		App->audio->PlayFx(1, 0);
+	if (App->scene_intro->landed){
+		App->audio->PlayFx(2, 0);
+		App->scene_intro->landed = false;
+	}
 	sprintf_s(title, " \t \t TIME: %d sec. \t \t \t %.1f Km/h \t \t \t FAST-LAP: %d sec.", timer.Read() / 1000, vehicle->GetKmh(),fast_lap/1000);
 	App->window->SetTitle(title);
 

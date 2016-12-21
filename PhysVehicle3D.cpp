@@ -35,10 +35,9 @@ void PhysVehicle3D::Render()
 			wheel_front.Render();
 		
 	}
-
+	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
 	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
-	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
 	offset = offset.rotate(q.getAxis(), q.getAngle());
 
@@ -48,6 +47,18 @@ void PhysVehicle3D::Render()
 
 
 	chassis.Render();
+
+	Cube stick(info.stick_size.x, info.stick_size.y, info.stick_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&stick.transform);
+	btVector3 stickoffset(info.stick_offset.x, info.stick_offset.y, info.stick_offset.z);
+	stickoffset = offset.rotate(q.getAxis(), q.getAngle());
+
+	stick.transform.M[12] += stickoffset.getX();
+	stick.transform.M[13] += stickoffset.getY();
+	stick.transform.M[14] += stickoffset.getZ();
+
+
+	stick.Render();
 }
 
 // ----------------------------------------------------------------------------

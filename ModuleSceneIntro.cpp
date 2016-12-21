@@ -22,9 +22,9 @@ bool ModuleSceneIntro::Start()
 	floor_form = {1000,1,2000};
 	ramp_form = {250,250,1}; 
 	landing_form = {60,1,60};
-	App->audio->PlayMusic("soundtrack.ogg", 1);
-	App->audio->LoadFx("ballhitwall.wav");
-
+	App->audio->PlayMusic("Music/soundtrack.ogg", 1);
+	App->audio->LoadFx("FX/ballhitwall.wav");
+	App->audio->LoadFx("FX/win.wav");
 	
 
 	//LOADS
